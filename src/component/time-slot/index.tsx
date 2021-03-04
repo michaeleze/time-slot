@@ -3,21 +3,24 @@ import {groupTimeSlots, getTime} from '../../utility';
 import './index.css';
 
 const TimeSlot = (props: any) => {
-  const [state, setState] = useState();
-  const {timeSlots} = props;
+  const {handleClick, timeSlots} = props;
   const groupedTimeSlot = groupTimeSlots(timeSlots);
 
   return (
     <>
       {
         groupedTimeSlot.map(item => (
-          <>
+          <div key={item?.day}>
             <p className='day'>{item?.day}</p>
             <ul>
               {
                 item?.slots?.map((slot: any) => (
-                  <li className="timeList">
-                    <button className="timeSlot">
+                  <li className="timeList" key={slot?.start_time}>
+                    <button
+                      className="timeSlot"
+                      onClick={handleClick}
+                      value={String(getTime(slot?.start_time, slot?.end_time))}
+                    >
                       {getTime(slot?.start_time, slot?.end_time)}
                     </button>
                   </li>
@@ -25,7 +28,7 @@ const TimeSlot = (props: any) => {
                 ))
               }
             </ul>
-          </>
+          </div>
         ))
       }
     </>

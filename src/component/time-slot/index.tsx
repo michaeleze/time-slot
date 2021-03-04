@@ -1,23 +1,33 @@
-import React from "react";
-import { groupTimeSlots, getHours } from '../../utility';
+import React, {useState} from "react";
+import {groupTimeSlots, getHours} from '../../utility';
+import './index.css';
 
 const TimeSlot = (props: any) => {
-  const { timeSlots } = props;
+  const [state, setState] = useState();
+  const {timeSlots} = props;
   const groupedTimeSlot = groupTimeSlots(timeSlots);
 
   return (
     <>
-      <h4>Day</h4>
-      <ul>
-        {
-          groupedTimeSlot.map(item => (
-            <li>
-              <p>{item?.day}</p>
-              <button>{getHours(item?.start)} - {getHours(item?.end)}</button>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        groupedTimeSlot.map(item => (
+          <>
+            <p className='day'>{item?.day}</p>
+            <ul>
+              {
+                item?.slots?.map((slot: any) => (
+                  <li className="timeList">
+                    <button className="timeSlot">
+                      {getHours(slot?.start_time, slot?.end_time)}
+                    </button>
+                  </li>
+
+                ))
+              }
+            </ul>
+          </>
+        ))
+      }
     </>
   )
 };

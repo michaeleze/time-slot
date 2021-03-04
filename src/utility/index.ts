@@ -1,6 +1,6 @@
 const days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] // Days of the week;
 export const getDay = (arg: string)  => new Date(arg).getDay(); // Format date - get day
-export const getHours = (arg: string)  => new Date(arg).getHours(); // Format date - get hours
+export const getHours = (start: string, end: string)  => `${new Date(start).getHours()} - ${new Date(end).getHours()}`; // Format date - get hours
 
 export const groupTimeSlots = (timeSlots: any) => {
   // Filter Days of the weeks

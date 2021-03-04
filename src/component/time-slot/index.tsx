@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {groupTimeSlots, getHours} from '../../utility';
+import {groupTimeSlots, getTime} from '../../utility';
 import './index.css';
 
 const TimeSlot = (props: any) => {
@@ -18,7 +18,7 @@ const TimeSlot = (props: any) => {
                 item?.slots?.map((slot: any) => (
                   <li className="timeList">
                     <button className="timeSlot">
-                      {getHours(slot?.start_time, slot?.end_time)}
+                      {getTime(slot?.start_time, slot?.end_time)}
                     </button>
                   </li>
 

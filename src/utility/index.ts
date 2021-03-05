@@ -1,6 +1,9 @@
 const days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] // Days of the week;
+
 export const getDay = (arg: string)  => new Date(arg).getDay(); // Format date - get day
+
 const formatMinute = (time: string) => new Date(time).getUTCMinutes() === 0 ? '00' : new Date(time).getUTCMinutes();
+
 export const getTime = (start: string, end: string)  => `${new Date(start).getUTCHours()}:${formatMinute(start)} - ${new Date(start).getUTCHours()}:${formatMinute(end)}`; // Format date - get hours
 
 export const groupTimeSlots = (timeSlots: any) => {
@@ -21,4 +24,16 @@ export const groupTimeSlots = (timeSlots: any) => {
   const newSlots = date.filter(item => item.day !== 'Sunday' && item.day !==  'Saturday') //  Remove weekends;
 
   return newSlots // New grouped time slot;
+}
+
+export const removeduplicateDays = (param: Array<string>) => {
+  const getUniqueEntry = param.reduce((total:any,curr:string) => [...total, ...Object.keys(curr)],[]);
+
+  return getUniqueEntry && Array.from(new Set(getUniqueEntry));
+}
+
+export const removeduplicateTimes = (param: Array<string>) => {
+  const getUniqueEntry = param.reduce((total:any,curr:string) => [...total, ...Object.values(curr)],[]);
+
+  return getUniqueEntry && Array.from(new Set(getUniqueEntry));
 }

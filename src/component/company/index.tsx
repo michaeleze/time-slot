@@ -3,17 +3,20 @@ import TimeSlot from "../time-slot";
 import './index.css';
 
 const Company: React.FC<any> = (props) => {
-  const { reseveredSlot, handleClick, item } = props;
-
-  console.log(reseveredSlot)
+  const {
+    currentReservation,
+    handleClick,
+    item,
+    reservedSlot,
+  } = props;
 
   return (
     <div key={item?.id}>
       <h2>{item?.name}</h2>
-      <p className="currentSchedule">{reseveredSlot[item?.name]}</p>
+      <p className="currentSchedule">{'currentReservation[item?.name]'}</p>
       <TimeSlot
-        bookedTime={reseveredSlot}
-        companyId={item?.id}
+        reservedSlot={reservedSlot}
+        companyName={item?.name}
         handleClick={handleClick}
         timeSlots={item?.time_slots}
       />

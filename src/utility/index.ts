@@ -26,14 +26,14 @@ export const groupTimeSlots = (timeSlots: any) => {
   return newSlots // New grouped time slot;
 }
 
-export const removeduplicateDays = (param: Array<string>) => {
-  const getUniqueEntry = param.reduce((total:any,curr:string) => [...total, ...Object.keys(curr)],[]);
-
-  return getUniqueEntry && Array.from(new Set(getUniqueEntry));
-}
-
-export const removeduplicateTimes = (param: Array<string>) => {
-  const getUniqueEntry = param.reduce((total:any,curr:string) => [...total, ...Object.values(curr)],[]);
-
-  return getUniqueEntry && Array.from(new Set(getUniqueEntry));
-}
+// export const removeduplicateDays = (param: Array<string>) => {
+//   const getUniqueEntry = param.reduce((total:any,curr:string) => [...total, ...Object.keys(curr)],[]);
+//
+//   return getUniqueEntry && Array.from(new Set(getUniqueEntry));
+// }
+//
+// export const removeduplicateTimes = (param: Array<string>) => {
+//   const getUniqueEntry = param.reduce((total:any,curr:string) => [...total, ...Object.values(curr)],[]);
+//
+//   return getUniqueEntry && Array.from(new Set(getUniqueEntry));
+// }

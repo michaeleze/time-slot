@@ -4,28 +4,20 @@ import mock from '../__mock/mock.json';
 import Company from "./company";
 
 function App() {
-  const [state, setState] = useState<Array<any>>([]);
-  const [currentReservation, setCurrentReservation]  = useState<string>();
+  const [state, setState] = useState<{ [x: string]: string;} | undefined>();
+  const [currentSlot, setCurrentSlot] = useState<{ [x: string]: string;} | undefined>();
 
   const handleClick = (event: any, companyName: string) => {
-    const currentTime = state?.find(item => item[`${companyName}-${event.target.name}`] === event.target.value) // Find Booked time
-
-    if(!currentTime) {
-      setCurrentReservation(event.target.value);
-      setState([...state, {[event.target.name]: event.target.value}]);
-    }
-    else{
-      state.splice(state.indexOf(currentTime),1);
-    }
+      setState({[event.target.name]: event.target.value});
+      setCurrentSlot({[companyName]: event.target.value});
   };
-
 
   return (
     <div className="App">
       {
         mock?.map(item => (
           <Company
-            currentReservation={currentReservation}
+            currentSlot={currentSlot}
             handleClick={handleClick}
             item={item}
             key={item.id}

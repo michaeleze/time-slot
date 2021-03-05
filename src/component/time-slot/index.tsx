@@ -2,12 +2,20 @@ import React from "react";
 import {
   groupTimeSlots,
   getTime,
-  removeduplicateDays,
-  removeduplicateTimes
 } from '../../utility';
 import './index.css';
 
-const TimeSlot: React.FC<any> = (props) => {
+interface ITimeSlot {
+  companyName: string;
+  handleClick: (x: any, y: string) => void;
+  reservedSlot: { [x: string]: string;} | undefined
+  timeSlots: Array<{
+    start_time: string;
+    end_time: string;
+  }>
+}
+
+const TimeSlot: React.FC<ITimeSlot> = (props) => {
   const {
     companyName,
     handleClick,
@@ -15,28 +23,22 @@ const TimeSlot: React.FC<any> = (props) => {
     timeSlots
   } = props;
 
+
   const groupedTimeSlot = groupTimeSlots(timeSlots);
-  const getkeys = removeduplicateDays(reservedSlot);
-  const getvalues = removeduplicateTimes(reservedSlot);
+  const getDay = reservedSlot && Object.keys(reservedSlot);
+  const getSlot = reservedSlot && Object.values(reservedSlot);
 
-  const handleReservation = (day: string, slot: any) => {
-    const findDay = getkeys?.find(item => item === day);
-    const findSlot = getvalues?.find(item => item === slot);
-
-    if (findDay && findSlot) {
-
-      console.log('true');
+  const handleReservation = (day: string, slot: string) => {
+    if (String(getSlot) === slot && String(getDay) === day) {
       return true
     }
-
-    console.log(findDay, day, getvalues, findSlot );
-    console.log('false');
+    return;
   }
 
   const GroupedTimeSlot = () => (
     <>
       {
-        groupedTimeSlot.map(item => {
+        groupedTimeSlot?.map(item => {
           return (
             <div key={item?.day}>
               <h4 className="day">{item?.day}</h4>

@@ -8,7 +8,7 @@ import './index.css';
 interface ITimeSlot {
   companyName: string;
   handleClick: (x: any, y: string) => void;
-  reservedSlot: { [x: string]: string;} | undefined
+  reservedSlot: { [x: string]: string; } | undefined
   timeSlots: Array<{
     start_time: string;
     end_time: string;
@@ -44,8 +44,7 @@ const TimeSlot: React.FC<ITimeSlot> = (props) => {
               <h4 className="day">{item?.day}</h4>
               <ul className="timeListContainer">
                 {
-                  item?.slots?.map((slot: any) => {
-                    return (
+                  item?.slots?.map((slot: any) => (
                       <li className="timeList" key={slot?.start_time}>
                         <button
                           className="timeSlot"
@@ -58,7 +57,7 @@ const TimeSlot: React.FC<ITimeSlot> = (props) => {
                         </button>
                       </li>
                     )
-                  })
+                  )
                 }
               </ul>
             </div>

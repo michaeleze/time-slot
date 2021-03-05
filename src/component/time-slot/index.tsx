@@ -2,10 +2,12 @@ import React from "react";
 import {groupTimeSlots, getTime} from '../../utility';
 import './index.css';
 
-const TimeSlot = (props: any) => {
+//const checkUnavailableTime = bookedTime.find((time: string) => time === String(getTime(slot?.start_time, slot?.end_time)));
+
+const TimeSlot: React.FC<any> = (props) => {
   const {
-    bookedTime,
-    companyName,
+    reseveredSlot,
+    companyId,
     handleClick,
     timeSlots
   } = props;
@@ -16,17 +18,15 @@ const TimeSlot = (props: any) => {
       {
         groupedTimeSlot.map(item => (
           <div key={item?.day}>
-            <h4 className='day'>{item?.day}</h4>
-            <ul>
+            <h4 className="day">{item?.day}</h4>
+            <ul className="timeListContainer">
               {
                 item?.slots?.map((slot: any) => {
-                  //const checkUnavailableTime = bookedTime.find((time: string) => time === String(getTime(slot?.start_time, slot?.end_time)));
-
                   return (
                     <li className="timeList" key={slot?.start_time}>
                       <button
                         className="timeSlot"
-                        name={companyName}
+                        name={`${companyId}-${item?.day}`}
                         // disabled = {Boolean(checkUnavailableTime)}
                         onClick={handleClick}
                         value={String(getTime(slot?.start_time, slot?.end_time))}

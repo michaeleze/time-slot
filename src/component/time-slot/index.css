@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+.timeListContainer {
+  height: 200px;
+  overflow: scroll;
+}
+
 .timeList {
   display: block;
 }

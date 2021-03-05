@@ -1,6 +1,8 @@
 .currentSchedule {
   background: white;
+  box-sizing: border-box;
+  height: 50px;
   color: black;
-  height: 60px;
+  padding: 10px 0;
   text-align: center;
 }

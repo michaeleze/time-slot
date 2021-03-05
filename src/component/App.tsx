@@ -1,28 +1,28 @@
 import React, {useState} from 'react';
-import TimeSlot from './time-slot';
 import './App.css';
 import mock from '../__mock/mock.json';
+import Company from "./company";
 
 function App() {
-  const [state, setState] = useState<Array<string>>([]);
-  const [timebooked, setTimeBooked] = useState<boolean>();
+  const [state, setState] = useState<any>([]);
 
   const handleClick = (event: any) => {
-    const currentTime = state?.find(item => item === event.target.value) // Find Booked time;
-    if(!currentTime){
-      setState([...state, event.target.value]);
-    }
+    // const currentTime = state?.find(item => item === event.target.value) // Find Booked time;
+      setState({[event.target.name]: event.target.value});
   };
+
 
   return (
     <div className="App">
       {console.log(state)}
       {
         mock?.map(item => (
-          <div key={item?.id}>
-            <h1>{item?.name}</h1>
-            <TimeSlot handleClick={handleClick} timeSlots={item?.time_slots}/>
-          </div>
+          <Company
+            bookedTime={state}
+            handleClick={handleClick}
+            item={item}
+            key={item.id}
+          />
         ))
       }
     </div>
